@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DbserviceService } from '../services/dbservice.service';
 import { AutenthicationService } from '../services/autenthication.service';
+import { TerapiaPage } from '../terapia/terapia.page';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,17 @@ import { AutenthicationService } from '../services/autenthication.service';
 })
 export class HomePage {
 
-  constructor(private router: Router,public dbtaskService: DbserviceService,public authenticationSerive:AutenthicationService) {
+  noticias: any = [
+    {
+      titulo: "Titulo de la ODT",
+      texto: "Texto de la ODT que quiero que salga en el cuerpo del item"
+    }
+  ]
+
+  constructor(private router: Router,public dbtaskService: DbserviceService,
+    public authenticationSerive:AutenthicationService, 
+    private servicioBD: DbserviceService,
+    public navCtrl: NavController) {
     
   }
 
@@ -34,4 +46,49 @@ export class HomePage {
     this.authenticationSerive.logout();
   }
 
+  ngOnInit(){
+    //this.servicioBD.presentAlert("1");
+    this.servicioBD.dbState().subscribe((res) =>{
+      //this.servicioBD.presentAlert("2");
+      if(res){
+        //this.servicioBD.presentAlert("3");
+        this.servicioBD.fetchNoticias().subscribe(item =>{
+          this.noticias = item;
+        })
+      }
+      //this.servicioBD.presentAlert("4");
+    });
+  }
+
+  getItem($event) {
+    const valor = $event.target.value;
+    console.log('valor del control: ' + valor);
+
+  }
+
+  agregar() {
+
+  }
+
+  editar(item) {
+    this.servicioBD.presentToast("Hola");
+    let navigationextras: NavigationExtras = {
+      state : {
+        idEnviado : item.id,
+        tituloEnviado : item.titulo,
+        textoEnviado : item.texto
+      }
+    }
+    this.servicioBD.presentToast("Aqui");
+    this.router.navigate(['/modificar'],navigationextras);
+
+  }
+
+  eliminar(item) {
+    this.servicioBD.deleteNoticia(item.id);
+    this.servicioBD.presentToast("Comentario Eliminado");
+  }
+  
+
 }
+

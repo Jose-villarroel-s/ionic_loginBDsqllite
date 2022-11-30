@@ -15,10 +15,11 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { DbserviceService } from './services/dbservice.service';
 import { AutService } from './services/aut.service';
 import { AutenthicationService } from './services/autenthication.service';
+import { TerapiaPage } from './terapia/terapia.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, TerapiaPage],
+  entryComponents: [TerapiaPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,

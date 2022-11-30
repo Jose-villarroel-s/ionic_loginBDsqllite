@@ -1,7 +1,7 @@
 {
-  "name": "main",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "name": "terapia",
+  "version": "0.0.2",
+  "author": "jose villarroel",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

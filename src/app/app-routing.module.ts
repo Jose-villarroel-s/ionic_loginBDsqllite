@@ -19,6 +19,31 @@ const routes: Routes = [
     path: 'error',
     loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
   },
+  {
+    path: 'terapia',
+    loadChildren: () => import('./terapia/terapia.module').then( m => m.TerapiaPageModule)
+  },
+  {
+    path: 'ejercicio',
+    loadChildren: () => import('./ejercicio/ejercicio.module').then( m => m.EjercicioPageModule)
+  },
+  {
+    path: 'api',
+    loadChildren: () => import('./api/api.module').then( m => m.ApiPageModule)
+  },
+  {
+    path: 'modificar',
+    loadChildren: () => import('./modificar/modificar.module').then( m => m.ModificarPageModule)
+  },
+  {
+    path: 'agregar',
+    loadChildren: () => import('./agregar/agregar.module').then( m => m.AgregarPageModule)
+  },
+   // {
+  // path: '**',
+  // redirectTo: 'error',
+  // pathMatch: 'full'
+  // },
 ];
 
 @NgModule({
